@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/', [PublicController::class, 'index'])->name('landipage');
+Route::get('shows-and-events', [PublicController::class, 'showEvents'])->name('showevent');
+
 
 Route::middleware([
     'auth:sanctum',
