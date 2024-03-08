@@ -25,6 +25,8 @@
           </li> --}}
           <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a></li>
           <li><a href="{{ route('events.index') }}"><i class="fa fa-clock-o orange_color"></i> <span>  Events</span></a></li>
+          <li><a href="{{ route('forms.index') }}"><i class="fa fa-clone orange_color"></i> <span>  Forms</span></a></li>
+
           {{-- <li>
              <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-diamond purple_color"></i> <span>Elements</span></a>
              <ul class="collapse list-unstyled" id="element">

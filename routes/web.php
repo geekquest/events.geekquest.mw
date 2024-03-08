@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\FormsController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,8 @@ Route::get('/', [PublicController::class, 'index'])->name('landipage');
 Route::get('shows-and-events', [PublicController::class, 'showEvents'])->name('showevent');
 
 Route::resource('events', EventController::class);
+Route::resource('forms', FormsController::class);
+
 
 Route::middleware([
     'auth:sanctum',
