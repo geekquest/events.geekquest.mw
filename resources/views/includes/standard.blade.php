@@ -1,4 +1,4 @@
-<form action="/action_page.php">
+
     @if ($event->form_id == 1)
         <div class="form-group">
             <label for="email">Full Name:</label>
@@ -42,4 +42,4 @@
     @endif
 
 
-</form>
+

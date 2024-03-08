@@ -105,6 +105,10 @@ class EventController extends Controller
         return view('events.show', compact('event'));
     }
 
+    // public function registration(){
+
+    // }
+
     /**
      * Show the form for editing the specified resource.
      */

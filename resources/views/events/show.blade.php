@@ -102,9 +102,15 @@
                                                 @include('includes.standard')
                                               </div>
                                               <div class="tab-pane fade" id="nav-profile_s2" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
-                                                    quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
-                                                    qui ratione voluptatem sequi nesciunt.
+                                                 <p>
+                                                    {{-- <img src="{!!$event->topic(QrCode::format('png')->generate('Embed me into an e-mail!'), 'QrCode.png', 'image/png')!!}">
+                                                     --}}
+                                                     {{-- {!! QrCode::size(100)->generate( route('dashboard') ); !!} --}}
+                                                     <img style="width: 100px; filter: brightness(1000%);" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(50)->generate(url()->current())) !!}"
+                                                     alt="QR Code">
+                                                     <p>
+                                                        {{ route('events.registration',$event) }}
+                                                     </p>
                                                  </p>
                                               </div>
                                               <div class="tab-pane fade" id="nav-contact_s2" role="tabpanel" aria-labelledby="nav-contact-tab">

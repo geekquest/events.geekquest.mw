@@ -23,16 +23,16 @@ Table of contents
 12. portfolio
 
 --------------------------------------------- */
-/* 
+/*
 ---------------------------------------------
 font & reset css
---------------------------------------------- 
+---------------------------------------------
 */
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
-/* 
+/*
 ---------------------------------------------
 reset
---------------------------------------------- 
+---------------------------------------------
 */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
 pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q,
@@ -113,10 +113,10 @@ p {
   font-weight: 300;
 }
 
-/* 
+/*
 ---------------------------------------------
 global styles
---------------------------------------------- 
+---------------------------------------------
 */
 html,
 body {
@@ -232,10 +232,10 @@ body {
 }
 
 
-/* 
+/*
 ---------------------------------------------
 header
---------------------------------------------- 
+---------------------------------------------
 */
 
 .pre-header {
@@ -592,10 +592,10 @@ header
 }
 
 
-/* 
+/*
 ---------------------------------------------
 banner
---------------------------------------------- 
+---------------------------------------------
 */
 
 .main-banner {
@@ -687,7 +687,7 @@ Show Events Carousel
   transform: translateY(5px);
 }
 
-    
+
 .owl-show-events .owl-nav .owl-prev{
   position: absolute;
   left: -45px;
@@ -839,7 +839,7 @@ Venues & Tickets
   margin-bottom: 20px;
 }
 
-.venue-item .down-content .right-content ul li { 
+.venue-item .down-content .right-content ul li {
   display: inline-block;
   color: #fff;
   font-size: 16px;
@@ -1000,10 +1000,10 @@ Subscribe
 }
 
 
-/* 
+/*
 ---------------------------------------------
 Footer
---------------------------------------------- 
+---------------------------------------------
 */
 
 footer {
@@ -1378,11 +1378,11 @@ Rent Venue Page
 */
 
 .page-heading-rent-venue {
-  background-image: url(../images/rent_venue_bg.jpg);
+  /* background-image: url(../images/rent_venue_bg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   padding: 110px 0px;
-  text-align: center;
+  text-align: center; */
 }
 
 .page-heading-rent-venue h2 {
@@ -1852,7 +1852,7 @@ Tickets Page
 .tickets-page .search-box .main-dark-button:hover {
   background-color: #656c74;
 }
- 
+
 .tickets-page .heading h2 {
   font-size: 30px;
   font-weight: 800;
@@ -2062,7 +2062,7 @@ Ticket Details Page
 
 .quantity {
   display: inline-block; }
- 
+
  .quantity .input-text.qty {
   width: 35px;
   height: 39px;
@@ -2071,20 +2071,20 @@ Ticket Details Page
   background-color: transparent;
   border: 1px solid #efefef;
  }
- 
+
  .quantity.buttons_added {
   text-align: left;
   position: relative;
   white-space: nowrap;
   vertical-align: top; }
- 
+
  .quantity.buttons_added input {
   display: inline-block;
   margin: 0;
   vertical-align: top;
   box-shadow: none;
  }
- 
+
  .quantity.buttons_added .minus,
  .quantity.buttons_added .plus {
   padding: 7px 10px 8px;
@@ -2092,23 +2092,23 @@ Ticket Details Page
   background-color: #ffffff;
   border: 1px solid #efefef;
   cursor:pointer;}
- 
+
  .quantity.buttons_added .minus {
   border-right: 0; }
- 
+
  .quantity.buttons_added .plus {
   border-left: 0; }
- 
+
  .quantity.buttons_added .minus:hover,
  .quantity.buttons_added .plus:hover {
   background: #eeeeee; }
- 
+
  .quantity input::-webkit-outer-spin-button,
  .quantity input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   margin: 0; }
-  
+
   .quantity.buttons_added .minus:focus,
  .quantity.buttons_added .plus:focus {
   outline: none; }
@@ -2252,10 +2252,10 @@ Event Details Page
 }
 
 
-/* 
+/*
 ---------------------------------------------
 preloader
---------------------------------------------- 
+---------------------------------------------
 */
 
 .js-preloader {
@@ -2353,10 +2353,10 @@ preloader
 }
 
 
-/* 
+/*
 ---------------------------------------------
 responsive
---------------------------------------------- 
+---------------------------------------------
 */
 
 
@@ -2379,7 +2379,7 @@ responsive
   .subscribe input,
   footer .address,
   footer .hours {
-    text-align: center; 
+    text-align: center;
   }
 
   .subscribe h4 {
@@ -2427,7 +2427,7 @@ responsive
   .about-upcoming-shows .next-shows {
     margin-top: 30px;
   }
-  
+
   .also-like .like-item {
     margin-bottom: 30px;
   }
@@ -2464,7 +2464,7 @@ responsive
   .tickets-page .search-box {
     text-align: center;
   }
-  
+
   .tickets-page .search-box .main-dark-button,
   .tickets-page .search-box select {
     margin-top: 30px;
@@ -2502,7 +2502,7 @@ responsive
     display: block;
     margin-bottom: 5px;
     margin-top: 5px;
-  } 
+  }
 
   .rent-venue-tabs #tabs ul .ui-tabs-active a:after,
   .shows-events-tabs #tabs ul .ui-tabs-active a:after {
@@ -2534,5 +2534,5 @@ responsive
             transform: translateY(-5px); }
   100% {
     -webkit-transform: translateY(0px);
-            transform: translateY(0px); } 
+            transform: translateY(0px); }
 }

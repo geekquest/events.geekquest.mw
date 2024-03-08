@@ -21,6 +21,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl-carousel.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/tooplate-artxibition.css') }}">
+
+    @yield('styles')
 <!--
 
 Tooplate 2125 ArtXibition
