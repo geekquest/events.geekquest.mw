@@ -17,32 +17,28 @@
                         <tr>
                             <th>Topic</th>
                             <th>Image</th>
+                            <th>Venue</th>
                             <th>Date</th>
                             <th>Action</th>
 
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>john@example.com</td>
-                        </tr>
-                        <tr>
-                            <td>Mary</td>
-                            <td>Moe</td>
-                            <td>mary@example.com</td>
-                        </tr>
-                        <tr>
-                            <td>July</td>
-                            <td>Dooley</td>
-                            <td>july@example.com</td>
-                        </tr>
-                        <tr>
-                            <td>Mary</td>
-                            <td>Moe</td>
-                            <td>mary@example.com</td>
-                        </tr>
+                        @foreach ($events as $event)
+                            <tr>
+                                <td>{{ $event->topic }}</td>
+                                <td> <img src="{{ asset('storage/' . $event->image) }}" alt="image" style="width: 10%" />
+                                </td>
+                                <td>{{ $event->venue }}</td>
+                                <td>{{ $event->date }}</td>
+                                <td>
+                                    <a class="text-white btn bg-success btn-priamry"
+                                        href="{{ route('events.show', $event) }}">Show</a>
+                                </td>
+                            </tr>
+                        @endforeach
+
+
                     </tbody>
                 </table>
             </div>
@@ -62,14 +58,14 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul class="list-unstyled">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                        <div class="alert alert-danger">
+                            <ul class="list-unstyled">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
@@ -79,18 +75,21 @@
                         </div>
                         <div class="form-group">
                             <label for="pwd">Flyer:</label>
-                        <input type="file" name="image" onchange="previewImage(this)">
-                        <img id="preview" src="#" alt="Preview Image" style="display: none; max-width: 200px; max-height: 200px;">
+                            <input type="file" name="image" onchange="previewImage(this)">
+                            <img id="preview" src="#" alt="Preview Image"
+                                style="display: none; max-width: 200px; max-height: 200px;">
 
                         </div>
                         <div class="form-group">
                             <label for="pwd">Content:</label>
-                            <textarea name="message" class="form-control" cols="30" rows="5" maxlength="500" oninput="updateCharacterCount(this)"></textarea>
+                            <textarea name="message" class="form-control" cols="30" rows="5" maxlength="500"
+                                oninput="updateCharacterCount(this)"></textarea>
                             <span id="characterCount">500</span> characters remaining
                         </div>
                         <div class="form-group">
                             <label for="email">Venue:</label>
-                            <p style="color:red"><strong>Note</strong>: if left Bank we assume ull use TechMw Discord Server</p>
+                            <p style="color:red"><strong>Note</strong>: if left Bank we assume ull use TechMw Discord Server
+                            </p>
                             <input type="text" class="form-control" placeholder="Enter venue" name="venue"
                                 id="email">
                         </div>
@@ -107,11 +106,12 @@
                             <div class="form-group">
                                 <label for="sel1">Duration:</label>
                                 <select name="duration" class="form-control" id="sel1">
-                                <option>1 hour</option>
-                                <option>2 hours</option>
-                                <option>3 hours</option>
-                                <option>4 hours</option>
-                                <option>5 hours</option>
+                                    <option value="0">Choose Duration</option>
+                                    <option>1 hour</option>
+                                    <option>2 hours</option>
+                                    <option>3 hours</option>
+                                    <option>4 hours</option>
+                                    <option>5 hours</option>
                                 </select>
                             </div>
                         </div>
@@ -129,6 +129,8 @@
                             <div class="form-group">
                                 <label for="sel1">Registration Form:</label>
                                 <select name="form_id" class="form-control" id="sel1">
+
+                                    <option value="0">Choose Form</option>
                                     @foreach ($forms as $form)
                                         <option value="{{ $form->id }}">{{ $form->title }}</option>
                                     @endforeach
@@ -161,16 +163,16 @@
 
     <script>
         const textarea = document.querySelector('textarea');
-                            const characterCount = document.getElementById('characterCount');
+        const characterCount = document.getElementById('characterCount');
 
-                            function updateCharacterCount(element) {
-                                const remainingCharacters = 500 - element.value.length;
-                                characterCount.textContent = remainingCharacters;
-                            }
+        function updateCharacterCount(element) {
+            const remainingCharacters = 500 - element.value.length;
+            characterCount.textContent = remainingCharacters;
+        }
 
-                            textarea.addEventListener('input', function() {
-                                updateCharacterCount(this);
-                            });
+        textarea.addEventListener('input', function() {
+            updateCharacterCount(this);
+        });
     </script>
     <script>
         function previewImage(input) {

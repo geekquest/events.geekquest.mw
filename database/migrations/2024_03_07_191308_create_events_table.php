@@ -19,9 +19,12 @@ return new class extends Migration
             $table->longText('message')->nullable();
             $table->string('image');
             $table->string('venue');
+            $table->string('duration');
             $table->date('date');
-            $table->dateTime('time');
-            $table->dateTime('time_to');
+            $table->time('time');
+            $table->boolean('active')->default(0);
+            $table->string('slug');
+            $table->time('time_to');
             $table->timestamps();
         });
     }

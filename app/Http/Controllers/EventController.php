@@ -35,11 +35,7 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-        dd($request->all());
-        // dd($request->all());
 
-
-        try {
 
             $data = $this->validateRequest();
 
@@ -76,9 +72,7 @@ class EventController extends Controller
             $this->storeimageone($event);
 
             return redirect()->back();
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
-        }
+
     }
 
     private function validateRequest()
@@ -108,7 +102,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        return view('events.show', compact('event'));
     }
 
     /**
