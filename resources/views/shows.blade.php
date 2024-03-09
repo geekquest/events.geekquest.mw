@@ -6,15 +6,16 @@
     <div class="venue-tickets">
         <div class="container-fluid">
             <div class="row">
-              <div class="col-lg-12">
+                <div class="col-lg-4"></div>
+              <div class="col-lg-4">
                 <div class="section-heading">
                     <h2>Discover More</h2>
 
 
                     <div class="text-center">
-                        <form action="" method="post">
+                        <form style="margin-top:10px;" action="" method="post">
                             <div class="form-group">
-                                <input type="text" required placeholder="search here..........." class="form-control" name="" style="width:50%" id="">
+                                <input type="text" required placeholder="search here..........." class="form-control" name="" id="">
                             </div>
                             <br>
                             <button type="submit" class="btn btn-primary bg-primary">Search</button>
@@ -22,12 +23,14 @@
                     </div>
                 </div>
               </div>
+              <div class="col-lg-4"></div>
+
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="section-heading">
+                    {{-- <div class="section-heading">
                         <h2>Discover More</h2>
-                    </div>
+                    </div> --}}
                 </div>
                 @foreach ($threevents as $threevet)
                 <div class="col-lg-4">
