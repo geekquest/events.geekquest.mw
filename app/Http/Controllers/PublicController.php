@@ -21,7 +21,11 @@ class PublicController extends Controller
     }
     public function showEvents()
     {
-        return view('shows');
+        $events= Event::orderBy('date', 'asc')->get();
+        $threevents= Event::orderBy('date', 'asc')->get();
+
+
+        return view('shows', compact('events','threevents')  );
     }
 
     public function registration(Event $event){
