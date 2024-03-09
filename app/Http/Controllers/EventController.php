@@ -86,6 +86,19 @@ class EventController extends Controller
         ]);
     }
 
+    public function save(StoreEventRequest $request)
+    {
+        // dd($request->all());
+        $id = $request->id;
+        $event = Event::find($id);
+        // Find the published value of the $blog and update it
+        // $form = $event->form_id;
+        $event->form_id = $request->form_id;
+        $event->save();
+
+        return redirect()->back();
+    }
+
     private function storeimageone($event)
     {
         if (request()->has('image')) {
@@ -102,7 +115,9 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return view('events.show', compact('event'));
+        $forms = forms::all();
+
+        return view('events.show', compact('event','forms'));
     }
 
     // public function registration(){

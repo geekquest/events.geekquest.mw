@@ -27,6 +27,7 @@ Route::get('shows-and-events', [PublicController::class, 'showEvents'])->name('s
 Route::resource('events', EventController::class);
 Route::resource('forms', FormsController::class);
 Route::get('events/{event}/registration', [PublicController::class, 'registration'])->name('events.registration');
+Route::post('/events/register', [EventController::class,  'save'])->name('event.save');
 
 
 Route::middleware([

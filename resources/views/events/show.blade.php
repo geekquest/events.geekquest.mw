@@ -106,10 +106,18 @@
                                                     {{-- <img src="{!!$event->topic(QrCode::format('png')->generate('Embed me into an e-mail!'), 'QrCode.png', 'image/png')!!}">
                                                      --}}
                                                      {{-- {!! QrCode::size(100)->generate( route('dashboard') ); !!} --}}
-                                                     <img style="width: 100px; filter: brightness(1000%);" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(50)->generate(url()->current())) !!}"
+                                                     <img style="width: 100px; filter: brightness(300%);" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(50)->generate(url()->current())) !!}"
                                                      alt="QR Code">
+                                                     <br>
+                                                     <br>
                                                      <p>
-                                                        {{ route('events.registration',$event) }}
+
+                                                        <input type="text" disabled value="{{  route('events.registration',$event)  }}" style="width:100%" id="myInputone">
+<br>
+<br>
+
+                                                        <button class="btn btn-primary bg-primary" onclick="myFunctionone()" onmouseout="outFunc()">
+                                                            <span class="tooltiptext" id="myTooltipone">Copy Link to Clipboard</button>
                                                      </p>
                                                  </p>
                                               </div>
@@ -135,4 +143,21 @@
              </div>
              <!-- end dashboard inner -->
 
+@endsection
+@section('scripts')
+    <script>
+         function myFunctionone() {
+            var copyText = document.getElementById("myInputone");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value);
+
+            var tooltip = document.getElementById("myTooltipone");
+            tooltip.innerHTML = "text Copied";
+        }
+        function outFunc() {
+            var tooltip = document.getElementById("myTooltip");
+            tooltip.innerHTML = "Copy to clipboard";
+        }
+    </script>
 @endsection
