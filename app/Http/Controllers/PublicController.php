@@ -10,7 +10,10 @@ class PublicController extends Controller
 
     public function index()
     {
-        return view('welcome');
+        $event= Event::orderBy('date', 'asc')->first();
+
+        // dd($event);
+        return view('welcome', compact('event'));
     }
     public function showEvents()
     {

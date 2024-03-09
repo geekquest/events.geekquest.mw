@@ -10,10 +10,10 @@
     <div class="main-banner">
         <div class="counter-content">
             <ul>
-                <li>Days<span id="days"></span></li>
-                <li>Hours<span id="hours"></span></li>
-                <li>Minutes<span id="minutes"></span></li>
-                <li>Seconds<span id="seconds"></span></li>
+                <li>Days<span id="days_{{ $event->id }}"></span></li>
+                <li>Hours<span id="hours_{{ $event->id }}"></span></li>
+                <li>Minutes<span id="minutes_{{ $event->id }}"></span></li>
+                <li>Seconds<span id="seconds_{{ $event->id }}"></span></li>
             </ul>
         </div>
         <div class="container">
@@ -25,9 +25,9 @@
                             <span>Next Show</span>
                         </div> --}}
                         <h6>Opening on Thursday, March 31st</h6>
-                        <h2>The Sunny Hill Festival 2022</h2>
+                        <h2>{{ $event->topic }}</h2>
                         <div class="main-white-button">
-                            <a href="ticket-details.html">Purchase Tickets</a>
+                            <a href="{{  route('events.registration',$event)  }}">Register</a>
                         </div>
                     </div>
                 </div>
@@ -279,3 +279,42 @@
         </div>
     </div> --}}
     @endsection
+
+    @section('scripts')
+    <script>
+        const countdownDate_{{ $event->id }} = "{{ \Carbon\Carbon::parse($event->date) }}";
+
+        const countdownTimer_{{ $event->id }} = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = new Date(countdownDate_{{ $event->id }}).getTime() - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days_{{ $event->id }}").innerHTML = days;
+            document.getElementById("hours_{{ $event->id }}").innerHTML = hours;
+            document.getElementById("minutes_{{ $event->id }}").innerHTML = minutes;
+            document.getElementById("seconds_{{ $event->id }}").innerHTML = seconds;
+
+            // Update other elements similarly
+
+            if (distance < 0) {
+                clearInterval(countdownTimer_{{ $event->id }});
+                document.getElementById("days_{{ $event->id }}").innerHTML = "0";
+                document.getElementById("hours_{{ $event->id }}").innerHTML = "0";
+                document.getElementById("minutes_{{ $event->id }}").innerHTML = "0";
+                document.getElementById("seconds_{{ $event->id }}").innerHTML = "0";
+
+                // Update other elements similarly
+            }
+
+            const secondsBlock = document.getElementById("seconds_{{ $event->id }}").parentNode;
+            secondsBlock.classList.add("active");
+            setTimeout(function() {
+                secondsBlock.classList.remove("active");
+            }, 500);
+        }, 1000);
+    </script>
+@endsection

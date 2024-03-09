@@ -6,9 +6,9 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <h2>{{ $event->topic }}</h2>
-                    <span>{{ $event->message }}</span>
+                <div class="col-lg-12" style="height:200px;">
+                    <h2 hidden>{{ $event->topic }}</h2>
+                    <span hidden>{{ $event->message }}</span>
                 </div>
             </div>
         </div>
@@ -132,6 +132,7 @@
         }
     </style>
 @endsection
+
 @section('scripts')
     <script>
         const countdownDate_{{ $event->id }} = "{{ \Carbon\Carbon::parse($event->date) }}";
