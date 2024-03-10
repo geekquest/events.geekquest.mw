@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Registrations;
 use App\Rules\UniqueEventEmailPhone;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreRegistrationsRequest;
 use App\Http\Requests\UpdateRegistrationsRequest;
 
@@ -31,38 +32,85 @@ class RegistrationsController extends Controller
     public function store(StoreRegistrationsRequest $request)
     {
         $eventId =  $request->event_id;
-        dd($eventId); // Get the current event ID;
+        $action = $request->input('action');
+        // dd($eventId); // Get the current event ID;
 
-        $request->validate([
-            'email' => ['required', 'email', new UniqueEventEmailPhone($eventId)],
-            'phone' => ['required', 'numeric', new UniqueEventEmailPhone($eventId)],
-            'name' => ['required', 'string'],
-            'event_id' => ['required', 'numeric'],
-            'gender'=>'',
-            'company'=>'',
-            'position'=>'',
-            'address'=>'',
-            'city'=>'',
-            'country'=>'',
-        ]);
+        // Check if the registration record already exists
+        $existingRegistration = Registrations::where('event_id', $eventId)
+            ->where('email', $request->input('email'))
+            ->where('phone', $request->input('phone'))
+            ->first();
 
-        // If validation passes, save the registration record
-        Registrations::create([
-            'event_id' => $eventId,
-            'email' => $request->input('email'),
-            'phone' => $request->input('phone'),
-            'name' => $request->input('name'),
-            'gender'=>$request->input('gender'),
-            'company'=>$request->input('company'),
-            'position'=>$request->input('position'),
-            'address'=>$request->input('address'),
-            'city'=>$request->input('city'),
-            'country'=>$request->input('country'),
+        if ($existingRegistration) {
+            Alert::toast('Registration already exists', 'error');
+            return redirect()->back();
+        }
 
-        ]);
+        if ($action === 'save') {
+            # code...
+            $request->validate([
+                'email' => ['required', 'email'],
+                'phone' => ['required', 'numeric'],
+                'name' => ['required', 'string'],
+                'event_id' => ['required', 'numeric'],
+                'gender' => '',
+                'company' => '',
+                'position' => '',
+                'address' => '',
+                'city' => '',
+                'country' => '',
+            ]);
 
+            // If validation passes, save the registration record
+            Registrations::create([
+                'event_id' => $eventId,
+                'email' => $request->input('email'),
+                'phone' => $request->input('phone'),
+                'name' => $request->input('name'),
+                'gender' => $request->input('gender'),
+                'company' => $request->input('company'),
+                'position' => $request->input('position'),
+                'address' => $request->input('address'),
+                'city' => $request->input('city'),
+                'country' => $request->input('country'),
 
-        return redirect()->back()->with('success', 'Registration successful');
+            ]);
+            Alert::toast('You have successfully registred for this event', 'success');
+
+            return redirect()->back();
+        } elseif ($action === 'submit') {
+            # code...
+            $request->validate([
+                'email' => ['required', 'email'],
+                'phone' => ['required', 'numeric'],
+                'name' => ['required', 'string'],
+                'event_id' => ['required', 'numeric'],
+                'gender' => '',
+                'company' => 'required',
+                'position' => 'required',
+                'address' => '',
+                'city' => '',
+                'country' => '',
+            ]);
+
+            // If validation passes, save the registration record
+            Registrations::create([
+                'event_id' => $eventId,
+                'email' => $request->input('email'),
+                'phone' => $request->input('phone'),
+                'name' => $request->input('name'),
+                'gender' => $request->input('gender'),
+                'company' => $request->input('company'),
+                'position' => $request->input('position'),
+                'address' => $request->input('address'),
+                'city' => $request->input('city'),
+                'country' => $request->input('country'),
+
+            ]);
+            Alert::toast('You have successfully registred for this event', 'success');
+
+            return redirect()->back();
+        }
     }
 
 

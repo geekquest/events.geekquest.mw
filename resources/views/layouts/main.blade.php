@@ -58,6 +58,7 @@ https://www.tooplate.com/view/2125-artxibition
                 </div>
             </div>
         </header>
+        @include('sweetalert::alert')
 
     @yield('content')
 

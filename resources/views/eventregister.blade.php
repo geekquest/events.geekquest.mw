@@ -79,22 +79,25 @@
                             <h4>Register for this Event</h4>
                         </div>
                         <div class="card-body">
-                              @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <ul class="list-unstyled">
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
+
                             <form action="{{ route('registration.store') }}" method="POST">
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul class="list-unstyled">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                                 @csrf
                                 <x-honeypot />
                                 @include('includes.standard')
-
-                                <button style="width:100%" class="btn btn-primary bg-primary"
-                                    type="submit">Register</button>
+                                @if ($event->form_id == 1)
+                                <button type="submit" style="width: 100%;margin-top:10px;" name="action" value="save"  class="btn bg-primary btn-primary me-2">Register</button>
+                                @else
+                                <button type="submit" style="width: 100%;margin-top:10px;"  name="action" value="submit"  class="btn bg-primary btn-primary me-2">Register</button>
+                                @endif
                             </form>
                         </div>
                     </div>
