@@ -29,8 +29,9 @@ class RegistrationsController extends Controller
      */
     public function store(StoreRegistrationsRequest $request)
     {
-        //
+        dd($request->all());
     }
+
 
     /**
      * Display the specified resource.

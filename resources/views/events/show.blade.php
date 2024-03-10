@@ -7,7 +7,11 @@
                    <div class="row column_title">
                       <div class="col-md-12">
                          <div class="page_title">
-                            <h2>{{ $event->topic }}</h2>
+                            {{-- <h2>{{ $event->topic }}</h2> --}}
+
+                            <a href="{{ route('events.edit', $event) }}" class="text-white btn btn-primary bg-primary" style="width:20%">Edit</a>
+                            <a class="text-white btn btn-danger bg-danger" style="width:20%">Delete</a>
+
                          </div>
                       </div>
                    </div>

@@ -79,7 +79,7 @@
                             <h4>Register for this Event</h4>
                         </div>
                         <div class="card-body">
-                            <form action="" method="POST">
+                            <form action="{{ route('registration.store') }}" method="POST">
                                 @csrf
                                 <x-honeypot />
                                 @include('includes.standard')

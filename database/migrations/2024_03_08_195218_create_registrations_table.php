@@ -17,12 +17,13 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->longText('email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('gender')->nullable();
             $table->string('company')->nullable();
             $table->date('position')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('country')->nullable();
+            $table->integer('gender')->nullable();
+
 
 
             $table->timestamps();

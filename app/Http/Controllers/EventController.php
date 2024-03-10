@@ -129,7 +129,9 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        $forms = forms::all();
+
+        return view('events.edit', compact('event','forms'));
     }
 
     /**

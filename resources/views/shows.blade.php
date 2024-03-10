@@ -18,7 +18,7 @@
                                 <input type="text" required placeholder="search here..........." class="form-control" name="" id="">
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-primary bg-primary">Search</button>
+                            <button type="submit" style="width:50%" class="btn btn-primary bg-primary">Search</button>
                         </form>
                     </div>
                 </div>

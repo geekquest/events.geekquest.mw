@@ -3,6 +3,7 @@
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\RegistrationsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,8 @@ Route::get('shows-and-events', [PublicController::class, 'showEvents'])->name('s
 
 Route::resource('events', EventController::class);
 Route::resource('forms', FormsController::class);
+Route::resource('registration', RegistrationsController::class);
+
 Route::get('events/{event}/registration', [PublicController::class, 'registration'])->name('events.registration');
 Route::post('/events/register', [EventController::class,  'save'])->name('event.save');
 
