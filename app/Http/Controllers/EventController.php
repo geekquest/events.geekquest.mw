@@ -8,7 +8,9 @@ use App\Models\forms;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use App\Http\Requests\StoreEventRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\UpdateEventRequest;
+use App\Models\Registrations;
 
 class EventController extends Controller
 {
@@ -37,42 +39,42 @@ class EventController extends Controller
     {
 
 
-            $data = $this->validateRequest();
+        $data = $this->validateRequest();
 
 
-            if ($request->venue == null) {
-                $data['venue'] = 'Tech Malawi Discord Server';
-            } else {
-                $data['venue'] = $request->venue;
-            }
-            if ($request->time != null) {
-                $inputTime = $request->input('time');
-                $inputDuration = $request->input('duration');
-                // Convert input time to Carbon instance
-                $startTime = Carbon::createFromFormat('H:i', $inputTime);
-                // Parse the duration to get the hours and minutes
-                $durationParts = explode(' ', $inputDuration);
-                $hours = (int)$durationParts[0];
-                $minutes = ($durationParts[1] == 'hours') ? 0 : (int)$durationParts[1];
-                // Add the duration to the start time
-                $endTime = $startTime->copy()->addHours($hours)->addMinutes($minutes);
-                // Format the end time
-                $endTimeFormatted = $endTime->format('H:i');
-                $data['time_to'] = $endTimeFormatted;
+        if ($request->venue == null) {
+            $data['venue'] = 'Tech Malawi Discord Server';
+        } else {
+            $data['venue'] = $request->venue;
+        }
+        if ($request->time != null) {
+            $inputTime = $request->input('time');
+            $inputDuration = $request->input('duration');
+            // Convert input time to Carbon instance
+            $startTime = Carbon::createFromFormat('H:i', $inputTime);
+            // Parse the duration to get the hours and minutes
+            $durationParts = explode(' ', $inputDuration);
+            $hours = (int)$durationParts[0];
+            $minutes = ($durationParts[1] == 'hours') ? 0 : (int)$durationParts[1];
+            // Add the duration to the start time
+            $endTime = $startTime->copy()->addHours($hours)->addMinutes($minutes);
+            // Format the end time
+            $endTimeFormatted = $endTime->format('H:i');
+            $data['time_to'] = $endTimeFormatted;
 
-                // dd($endTimeFormatted);
-            }
-            $data['topic'] = $request->topic;
-            $data['user_id'] = Auth::user()->id;
-            $data['form_id'] = $request->form_id;
-            $data['date'] = $request->date;
-            $data['message'] = $request->message;
+            // dd($endTimeFormatted);
+        }
+        $data['topic'] = $request->topic;
+        $data['user_id'] = Auth::user()->id;
+        $data['form_id'] = $request->form_id;
+        $data['date'] = $request->date;
+        $data['message'] = $request->message;
 
-            $event = Event::create($data);
-            $this->storeimageone($event);
+        $event = Event::create($data);
+        $this->storeimageone($event);
+        Alert::toast('You have successfully added an  event', 'success');
 
-            return redirect()->back();
-
+        return redirect()->back();
     }
 
     private function validateRequest()
@@ -88,13 +90,11 @@ class EventController extends Controller
 
     public function save(StoreEventRequest $request)
     {
-        // dd($request->all());
         $id = $request->id;
         $event = Event::find($id);
-        // Find the published value of the $blog and update it
-        // $form = $event->form_id;
         $event->form_id = $request->form_id;
         $event->save();
+        Alert::toast('You have successfully updated an  event', 'success');
 
         return redirect()->back();
     }
@@ -116,8 +116,9 @@ class EventController extends Controller
     public function show(Event $event)
     {
         $forms = forms::all();
+        $registration = Registrations::where('event_id', $event->id)->get();
 
-        return view('events.show', compact('event','forms'));
+        return view('events.show', compact('event', 'forms','registration'));
     }
 
     // public function registration(){
@@ -131,7 +132,7 @@ class EventController extends Controller
     {
         $forms = forms::all();
 
-        return view('events.edit', compact('event','forms'));
+        return view('events.edit', compact('event', 'forms'));
     }
 
     /**
