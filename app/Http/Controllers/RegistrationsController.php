@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Registrations;
+use App\Rules\UniqueEventEmailPhone;
 use App\Http\Requests\StoreRegistrationsRequest;
 use App\Http\Requests\UpdateRegistrationsRequest;
-use App\Models\Registrations;
 
 class RegistrationsController extends Controller
 {
@@ -29,7 +30,39 @@ class RegistrationsController extends Controller
      */
     public function store(StoreRegistrationsRequest $request)
     {
-        dd($request->all());
+        $eventId =  $request->event_id;
+        dd($eventId); // Get the current event ID;
+
+        $request->validate([
+            'email' => ['required', 'email', new UniqueEventEmailPhone($eventId)],
+            'phone' => ['required', 'numeric', new UniqueEventEmailPhone($eventId)],
+            'name' => ['required', 'string'],
+            'event_id' => ['required', 'numeric'],
+            'gender'=>'',
+            'company'=>'',
+            'position'=>'',
+            'address'=>'',
+            'city'=>'',
+            'country'=>'',
+        ]);
+
+        // If validation passes, save the registration record
+        Registrations::create([
+            'event_id' => $eventId,
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'name' => $request->input('name'),
+            'gender'=>$request->input('gender'),
+            'company'=>$request->input('company'),
+            'position'=>$request->input('position'),
+            'address'=>$request->input('address'),
+            'city'=>$request->input('city'),
+            'country'=>$request->input('country'),
+
+        ]);
+
+
+        return redirect()->back()->with('success', 'Registration successful');
     }
 
 

@@ -19,7 +19,7 @@ class UniqueEventEmailPhone implements Rule
         $existingRecord = Registrations::where('event_id', $this->eventId)
             ->where(function ($query) use ($value) {
                 $query->where('email', $value)
-                    ->Where('phone', $value);
+                    ->orWhere('phone', $value);
             })
             ->first();
 

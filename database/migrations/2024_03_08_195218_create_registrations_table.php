@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->integer('event_id');
             $table->string('name')->nullable();
-            $table->longText('email')->nullable();
+            $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('company')->nullable();
-            $table->date('position')->nullable();
+            $table->string('position')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('country')->nullable();
