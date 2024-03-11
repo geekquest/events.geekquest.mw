@@ -12,10 +12,10 @@ class Event extends Model
     use HasFactory;
     use HasSlug;
 
-    
+
     protected $guarded = [];
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('topic')
@@ -28,4 +28,10 @@ class Event extends Model
         return 'slug';
     }
 
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->where('topic', 'like', '%' . $keyword . '%')
+            ->orwhere('message', 'like', '%' . $keyword . '%');
+
+    }
 }

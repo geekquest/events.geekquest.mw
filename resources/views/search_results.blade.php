@@ -9,19 +9,16 @@
                 <div class="col-lg-4"></div>
               <div class="col-lg-4">
                 <div class="section-heading">
-                    <h2>Discover More</h2>
+                    @if ($events->count() > 0)
+                    <h2>Found ( {{ $events->count() }} ) Results </h2>
+@else
+<div class="alert alert-success">
+    <strong>Error!</strong> nothing matches with the records we have in our database.
+  </div>
+                    @endif
 
 
-                    <div class="text-center">
-                        <form style="margin-top:10px;" action="{{ route('search.index') }}" method="post">
-                            @csrf
-                            <div class="form-group">
-                                <input type="text" required placeholder="search here..........." class="form-control" name="keyword" id="">
-                            </div>
-                            <br>
-                            <button type="submit" style="width:50%" class="btn btn-primary bg-primary">Search</button>
-                        </form>
-                    </div>
+
                 </div>
               </div>
               <div class="col-lg-4"></div>
@@ -33,7 +30,7 @@
                         <h2>Discover More</h2>
                     </div> --}}
                 </div>
-                @foreach ($threevents as $threevet)
+                @foreach ($events as $threevet)
                 <div class="col-lg-4">
                     <div class="venue-item">
                         <div class="thumb">

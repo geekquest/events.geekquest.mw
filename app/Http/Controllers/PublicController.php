@@ -32,4 +32,13 @@ class PublicController extends Controller
         return view('eventregister', compact('event'));
 
     }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $events = Event::search($keyword)->get();
+
+        return view('search_results', compact('events'));
+    }
 }

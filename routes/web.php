@@ -21,7 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::post('/search', [PublicController::class, 'search'])->name('search.index');
 Route::get('/', [PublicController::class, 'index'])->name('landipage');
 Route::get('shows-and-events', [PublicController::class, 'showEvents'])->name('showevent');
 
