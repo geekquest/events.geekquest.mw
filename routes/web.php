@@ -30,6 +30,8 @@ Route::resource('forms', FormsController::class);
 Route::resource('registration', RegistrationsController::class);
 
 Route::get('events/{event}/registration', [PublicController::class, 'registration'])->name('events.registration');
+Route::get('eventstable/{event}/registration', [PublicController::class, 'regtable'])->name('events.regtable');
+
 Route::post('/events/register', [EventController::class,  'save'])->name('event.save');
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Registrations;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
@@ -19,6 +20,20 @@ class PublicController extends Controller
         // dd($event);
         return view('welcome', compact('event','events','threevents'));
     }
+  public function regtable(Event $event)
+    {
+
+        // dd($event->id);
+
+        $registrations = Registrations::where('event_id', $event->id)->get();
+        $regf = Registrations::where('event_id', $event->id)->first();
+        $comp = $regf->company;
+        // dd($comp);
+
+        // dd($registrations);
+        return view('eventstable', compact('registrations','comp'));
+    }
+
     public function showEvents()
     {
         $events= Event::orderBy('date', 'asc')->get();

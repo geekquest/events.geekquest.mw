@@ -39,7 +39,7 @@ https://www.tooplate.com/view/2125-artxibition
                     <div class="col-12">
                         <nav class="main-nav">
                             <!-- ***** Logo Start ***** -->
-                            <a href="index.html" class="logo">Malawi Events</a>
+                            <a href="/" class="logo">Malawi Events</a>
                             <!-- ***** Logo End ***** -->
                             <!-- ***** Menu Start ***** -->
                             <ul class="nav">
