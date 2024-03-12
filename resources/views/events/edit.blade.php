@@ -28,8 +28,9 @@
                                                 </ul>
                                             </div>
                                         @endif
-                                        <form action="{{ route('events.store') }}" method="POST"
+                                        <form action="{{ route('events.update', $event->slug) }}" method="POST"
                                             enctype="multipart/form-data">
+                                            @method('PUT')
                                             @csrf
                                             <div class="form-group">
                                                 <label for="email">Title:</label>
@@ -84,25 +85,41 @@
 
 
 
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input type="checkbox" class="form-check-input" value=""
-                                                        id="registrationCheckbox">Require Registration
-                                                </label>
-                                            </div>
+                                        @if ($event->form_id == 0)
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" value=""
+                                                    id="registrationCheckbox">Require Registration
+                                            </label>
+                                        </div>
 
-                                            <div id="registrationForm" style="display: none;margin-top:5px;">
-                                                <div class="form-group">
-                                                    <label for="sel1">Registration Form:</label>
-                                                    <select name="form_id" class="form-control" id="sel1">
+                                        <div id="registrationForm" style="display: none;margin-top:5px;">
+                                            <div class="form-group">
+                                                <label for="sel1">Registration Form:</label>
+                                                <select name="form_id" class="form-control" id="sel1">
 
-                                                        <option value="0">Choose Form</option>
-                                                        @foreach ($forms as $form)
-                                                            <option value="{{ $form->id }}">{{ $form->title }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+                                                    <option value="0">Choose Form</option>
+                                                    @foreach ($forms as $form)
+                                                        <option value="{{ $form->id }}">{{ $form->title }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
+                                        </div>
+                                        @else
+                                        <div id="registrationForm" >
+                                            <div class="form-group">
+                                                <label for="sel1">Registration Form:</label>
+                                                <select name="form_id" class="form-control" id="sel1">
+
+                                                    <option value="0">Remove Registration Form</option>
+
+                                                    @foreach ($forms as $form)
+                                                        <option value="{{ $form->id }}"  {{ $form->id == $event->form_id ? 'selected' : '' }}>{{ $form->title }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        @endif
                                             <button type="submit" style="width:100%;margin-top:5px;"
                                                 class="btn bg-primary btn-primary">Update {{ $event->topic }}</button>
                                         </form>

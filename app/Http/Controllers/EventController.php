@@ -88,6 +88,17 @@ class EventController extends Controller
         ]);
     }
 
+    private function validateRequestone()
+    {
+        return request()->validate([
+            'topic' => 'required',
+            'date' => 'required',
+            'image' => 'sometimes|image',
+            'time' => 'required',
+            'duration' => '',
+        ]);
+    }
+
     public function save(StoreEventRequest $request)
     {
         $id = $request->id;
@@ -106,6 +117,17 @@ class EventController extends Controller
                 'image' => request()->image->store('uploads/image', 'public'),
             ]);
             $image = Image::make('storage/' . $event->image);
+            // ->fit(346, 208);
+            $image->save();
+        }
+    }
+    private function storeimage($eventone)
+    {
+        if (request()->has('image')) {
+            $eventone->update([
+                'image' => request()->image->store('uploads/image', 'public'),
+            ]);
+            $image = Image::make('storage/' . $eventone->image);
             // ->fit(346, 208);
             $image->save();
         }
@@ -140,7 +162,52 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event)
     {
-        //
+        // dd($event);
+        $eventone = Event::findOrFail($event->id);
+        // dd($eventone->id);
+
+         // Validate the request data
+    $data = $this->validateRequestone();
+
+    // Check if the venue is null
+    if ($request->venue == null) {
+        $data['venue'] = 'Tech Malawi Discord Server';
+    } else {
+        $data['venue'] = $request->venue;
+    }
+
+    // Process time and duration
+    if ($request->time != null) {
+        $inputTime = $request->input('time');
+        $inputDuration = $request->input('duration');
+        // Convert input time to Carbon instance
+        $startTime = Carbon::createFromFormat('H:i', $inputTime);
+        // Parse the duration to get the hours and minutes
+        $durationParts = explode(' ', $inputDuration);
+        $hours = (int)$durationParts[0];
+        $minutes = ($durationParts[1] == 'hours') ? 0 : (int)$durationParts[1];
+        // Add the duration to the start time
+        $endTime = $startTime->copy()->addHours($hours)->addMinutes($minutes);
+        // Format the end time
+        $endTimeFormatted = $endTime->format('H:i');
+        $data['time_to'] = $endTimeFormatted;
+    }
+
+    // Fill other fields
+    $data['topic'] = $request->topic;
+    $data['form_id'] = $request->form_id;
+    $data['date'] = $request->date;
+    $data['message'] = $request->message;
+
+    // Update the event
+    $eventone->update($data);
+
+    // Optionally, handle images
+    $this->storeimage($eventone);
+
+    // Return success message and redirect back
+    Alert::toast('Event updated successfully', 'success');
+    return redirect()->back();
     }
 
     /**
