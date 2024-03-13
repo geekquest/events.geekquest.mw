@@ -215,6 +215,9 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        // dd($event);
+        $event->delete();
+        Alert::toast('Event deleted successfully', 'success');
+        return redirect()->route('events.index');
     }
 }

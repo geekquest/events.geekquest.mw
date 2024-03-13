@@ -7,10 +7,20 @@
                 <div class="col-md-12">
                     <div class="page_title">
                         {{-- <h2>{{ $event->topic }}</h2> --}}
+                        <div class="row">
+                            <div class="col-md-6"> <!-- Adjust column size as needed -->
+                                <a href="{{ route('events.edit', $event->slug) }}" class="text-white btn btn-primary bg-primary w-100">Edit</a>
+                            </div>
+                            <div class="col-md-6"> <!-- Adjust column size as needed -->
+                                <form action="{{ route('events.destroy', $event) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="text-white btn btn-danger bg-danger w-100" type="submit">DELETE</button>
+                                </form>
+                            </div>
+                        </div>
 
-                        <a href="{{ route('events.edit', $event) }}" class="text-white btn btn-primary bg-primary"
-                            style="width:20%">Edit</a>
-                        <a class="text-white btn btn-danger bg-danger" style="width:20%">Delete</a>
+
 
                     </div>
                 </div>
@@ -146,72 +156,78 @@
                                                     aria-labelledby="nav-contact-tab">
                                                     <div class="table_section padding_infor_info">
                                                         <div class="table-responsive-sm">
-@if ( $registration->count() > 0)
-<h4>Total : {{ $registration->count() }}</h4>
-<a href="{{ route('events.regtable', $event) }}">See full
-    list</a>
-<br>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Name</th>
-            {{-- <th>Email</th> --}}
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($registration as $register)
-            <tr>
-                <td>{{ $register->name }}</td>
-                {{-- <td>{{ $register->email }}</td> --}}
-                <td>
-                    <button class="btn btn-primary"
-                        data-toggle="modal"
-                        data-target="#categoryModal{{ $register->id }}">Show</button>
-                </td>
-            </tr>
-            <!-- edit Modal -->
-            <div class="modal fade"
-                id="categoryModal{{ $register->id }}"
-                tabindex="-1" role="dialog"
-                aria-labelledby="categoryModalLabel{{ $register->id }}"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title"
-                                id="categoryModalLabel{{ $register->id }}">
-                                Edit {{ $register->name }}</h5>
-                            <button type="button"
-                                class="close"
-                                data-dismiss="modal"
-                                aria-label="Close">
-                                <span
-                                    aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <h4> <strong>Name</strong>
-                                {{ $register->name }}</h4>
-                            <h4> <strong>Email</strong>
-                                {{ $register->Email }}</h4>
-                            <h4> <strong>Phone</strong>
-                                {{ $register->phone }}</h4>
-                        </div>
+                                                            @if ($registration->count() > 0)
+                                                                <h4>Total : {{ $registration->count() }}</h4>
+                                                                <a href="{{ route('events.regtable', $event) }}">See full
+                                                                    list</a>
+                                                                <br>
+                                                                <table class="table table-bordered">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Name</th>
+                                                                            {{-- <th>Email</th> --}}
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach ($registration as $register)
+                                                                            <tr>
+                                                                                <td>{{ $register->name }}</td>
+                                                                                {{-- <td>{{ $register->email }}</td> --}}
+                                                                                <td>
+                                                                                    <button class="btn btn-primary"
+                                                                                        data-toggle="modal"
+                                                                                        data-target="#categoryModal{{ $register->id }}">Show</button>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <!-- edit Modal -->
+                                                                            <div class="modal fade"
+                                                                                id="categoryModal{{ $register->id }}"
+                                                                                tabindex="-1" role="dialog"
+                                                                                aria-labelledby="categoryModalLabel{{ $register->id }}"
+                                                                                aria-hidden="true">
+                                                                                <div class="modal-dialog" role="document">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h5 class="modal-title"
+                                                                                                id="categoryModalLabel{{ $register->id }}">
+                                                                                                {{ $register->name }}
+                                                                                                Details</h5>
+                                                                                            <button type="button"
+                                                                                                class="close"
+                                                                                                data-dismiss="modal"
+                                                                                                aria-label="Close">
+                                                                                                <span
+                                                                                                    aria-hidden="true">&times;</span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <h4> <strong>Name</strong>
+                                                                                                {{ $register->name }}</h4>
+                                                                                            <br>
+                                                                                            <h4> <strong>Email</strong>
+                                                                                                {{ $register->email }}</h4>
+                                                                                            <br>
 
-                    </div>
-                </div>
-            </div>
-        @endforeach
+                                                                                            <h4> <strong>Phone</strong>
+                                                                                                {{ $register->phone }}</h4>
+                                                                                            <br>
+
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        @endforeach
 
 
-    </tbody>
-</table>
-@else
-<div class="alert alert-success">
-    <strong>NO RECORD FOUND</strong> .
-  </div>
-@endif
+                                                                    </tbody>
+                                                                </table>
+                                                            @else
+                                                                <div class="alert alert-success">
+                                                                    <strong>NO RECORD FOUND</strong> .
+                                                                </div>
+                                                            @endif
 
 
                                                         </div>
