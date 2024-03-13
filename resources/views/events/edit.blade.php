@@ -74,11 +74,11 @@
                                                     <label for="sel1">Duration:</label>
                                                     <select name="duration" class="form-control" id="sel1">
                                                         <option value="0">Choose Duration</option>
-                                                        <option>1 hour</option>
-                                                        <option>2 hours</option>
-                                                        <option>3 hours</option>
-                                                        <option>4 hours</option>
-                                                        <option>5 hours</option>
+                                                        <option {{ $event->duration == $event->duration ? 'selected' : '' }}>1 hour</option>
+                                                        <option >2 hours</option>
+                                                        <option >3 hours</option>
+                                                        <option >4 hours</option>
+                                                        <option >5 hours</option>
                                                     </select>
                                                 </div>
                                             </div>

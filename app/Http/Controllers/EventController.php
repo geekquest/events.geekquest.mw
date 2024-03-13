@@ -11,6 +11,7 @@ use App\Http\Requests\StoreEventRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Registrations;
+use App\Models\Time;
 
 class EventController extends Controller
 {
@@ -20,6 +21,7 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
+
         $forms = forms::all();
         return view('events.index', compact('events', 'forms'));
     }
@@ -139,8 +141,9 @@ class EventController extends Controller
     {
         $forms = forms::all();
         $registration = Registrations::where('event_id', $event->id)->get();
+        $reminders = Time::where('event_id', $event->id)->get();
 
-        return view('events.show', compact('event', 'forms','registration'));
+        return view('events.show', compact('event', 'forms','registration','reminders'));
     }
 
     // public function registration(){

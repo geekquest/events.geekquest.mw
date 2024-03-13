@@ -9,7 +9,8 @@
                         {{-- <h2>{{ $event->topic }}</h2> --}}
                         <div class="row">
                             <div class="col-md-6"> <!-- Adjust column size as needed -->
-                                <a href="{{ route('events.edit', $event->slug) }}" class="text-white btn btn-primary bg-primary w-100">Edit</a>
+                                <a href="{{ route('events.edit', $event->slug) }}"
+                                    class="text-white btn btn-primary bg-primary w-100">Edit</a>
                             </div>
                             <div class="col-md-6"> <!-- Adjust column size as needed -->
                                 <form action="{{ route('events.destroy', $event) }}" method="post">
@@ -114,14 +115,53 @@
                                                         aria-selected="true">Form</a>
                                                     <a class="nav-item nav-link" id="nav-profile-tab2" data-toggle="tab"
                                                         href="#nav-profile_s2" role="tab" aria-controls="nav-profile_s2"
-                                                        aria-selected="false">Qr Code & Link</a>
+                                                        aria-selected="false">Qr Code</a>
                                                     <a class="nav-item nav-link" id="nav-contact-tab2" data-toggle="tab"
                                                         href="#nav-contact_s2" role="tab"
                                                         aria-controls="nav-contacts_s2" aria-selected="false">Registration
                                                         List</a>
+                                                    <a class="nav-item nav-link" id="nav-contact-tab2" data-toggle="tab"
+                                                        href="#nav-cont_s2" role="tab" aria-controls="nav-cont_s2"
+                                                        aria-selected="false">Reminders</a>
                                                 </div>
                                             </nav>
+
                                             <div class="tab-content" id="nav-tabContent_2">
+                                                <div class="tab-pane fade " id="nav-cont_s2" role="tabpanel"
+                                                    aria-labelledby="nav-home-tab">
+                                                    <div>
+                                                        <form action="{{ route('reminders.store') }}" method="post">
+                                                            @csrf
+                                                            <input type="text" hidden name="event_id"
+                                                                value="{{ $event->id }}">
+                                                            <div class="form-group">
+                                                                <label>Reminder:</label>
+                                                                <select name="time" class="form-control">
+                                                                    <option value="0">Choose time</option>
+                                                                    <option>5 minute</option>
+                                                                    <option>1 hour</option>
+                                                                    <option>2 hours</option>
+                                                                    <option>12 hours</option>
+                                                                    <option>1 week</option>
+                                                                    <option>2 week</option>
+                                                                    <option>1 Month</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <button class="btn btn-primary bg-primary" style="width:100%"
+                                                                type="submit">Add</button>
+                                                        </form>
+                                                    </div>
+                                                    <div>
+                                                        <br>
+                                                        <br>
+                                                        <h4>Reminder List</h4>
+                                                        <br>
+                                                        @foreach ($reminders as $reminder)
+                                                            <h4> > {{ $reminder->time }}</h4>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
                                                 <div class="tab-pane fade show active" id="nav-home_s2" role="tabpanel"
                                                     aria-labelledby="nav-home-tab">
                                                     @include('includes.standard')
@@ -145,8 +185,8 @@
                                                         <br>
                                                         <br>
 
-                                                        <button class="btn btn-primary bg-primary" onclick="myFunctionone()"
-                                                            onmouseout="outFunc()">
+                                                        <button class="btn btn-primary bg-primary"
+                                                            onclick="myFunctionone()" onmouseout="outFunc()">
                                                             <span class="tooltiptext" id="myTooltipone">Copy Link to
                                                                 Clipboard</button>
                                                     </p>

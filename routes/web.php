@@ -4,6 +4,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\RegistrationsController;
+use App\Http\Controllers\TimeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,7 @@ Route::post('/search', [PublicController::class, 'search'])->name('search.index'
 Route::get('/', [PublicController::class, 'index'])->name('landipage');
 Route::get('shows-and-events', [PublicController::class, 'showEvents'])->name('showevent');
 
+Route::resource('reminders', TimeController::class);
 Route::resource('events', EventController::class);
 Route::resource('forms', FormsController::class);
 Route::resource('registration', RegistrationsController::class);
