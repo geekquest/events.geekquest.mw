@@ -21,9 +21,11 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
+        $userevents = Event::where('user_id', Auth::user()->id)->get();
+
 
         $forms = forms::all();
-        return view('events.index', compact('events', 'forms'));
+        return view('events.index', compact('events', 'forms','userevents'));
     }
 
     /**
@@ -139,12 +141,21 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        $forms = forms::all();
-        $registration = Registrations::where('event_id', $event->id)->get();
-        $reminders = Time::where('event_id', $event->id)->get();
+        if (Auth::user()->id == $event->user_id) {
+            $forms = forms::all();
+            $registration = Registrations::where('event_id', $event->id)->get();
+            $reminders = Time::where('event_id', $event->id)->get();
 
-        return view('events.show', compact('event', 'forms','registration','reminders'));
+            return view('events.show', compact('event', 'forms','registration','reminders'));
+
+
+    } else {
+        // redirect user to home page
+        Alert::toast('You dont have access to view this', 'error');
+
+        return redirect()->back();
     }
+   }
 
     // public function registration(){
 

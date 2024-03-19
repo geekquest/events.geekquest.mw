@@ -1,19 +1,35 @@
 @extends('layouts.admin')
 @section('content')
-       <!-- dashboard inner -->
-   <div class="midde_cont" style="margin-top:40px;">
-    <div class="container-fluid">
-       <div class="row column_title">
-          <div class="col-md-12">
-             <div class="page_title">
-                <h2>Dashboard</h2>
-             </div>
-          </div>
-       </div>
+    @role('admin')
+    <div class="midde_cont" style="margin-top:40px;">
+        <div class="container-fluid">
+           <div class="row column_title">
+              <div class="col-md-12">
+                 <div class="page_title">
+                    <h2>Eligible</h2>
+                 </div>
+              </div>
+           </div>
 
-    </div>
+        </div>
 
- </div>
- <!-- end dashboard inner -->
+     </div>
+    @else
+    <div class="midde_cont" style="margin-top:40px;">
+        <div class="container-fluid">
+           <div class="row column_title">
+              <div class="col-md-12">
+                 <div class="page_title">
+                    <h2>Not eligible</h2>
+                 </div>
+              </div>
+           </div>
 
+        </div>
+
+     </div>
+    @endrole
+    <!-- dashboard inner -->
+
+    <!-- end dashboard inner -->
 @endsection
