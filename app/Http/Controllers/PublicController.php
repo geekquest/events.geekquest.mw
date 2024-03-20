@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use App\Models\Registrations;
 use Illuminate\Http\Request;
+use App\Models\Registrations;
+use Illuminate\Support\Facades\Auth;
 
 class PublicController extends Controller
 {
@@ -55,5 +56,16 @@ class PublicController extends Controller
         $events = Event::search($keyword)->get();
 
         return view('search_results', compact('events'));
+    }
+
+    public function adminDestroy(Request $request)
+    {
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login');
+
+
     }
 }

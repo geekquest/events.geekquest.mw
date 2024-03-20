@@ -35,6 +35,7 @@ Route::get('events/{event}/registration', [PublicController::class, 'registratio
 Route::get('eventstable/{event}/registration', [PublicController::class, 'regtable'])->name('events.regtable');
 
 Route::post('/events/register', [EventController::class,  'save'])->name('event.save');
+Route::get('admin/logout', [PublicController::class, 'adminDestroy'])->name('admin.logout');
 
 
 Route::middleware([

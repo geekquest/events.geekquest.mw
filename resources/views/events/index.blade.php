@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    @role('Admin')
+    @role('admin')
         <div class="white_shd full margin_bottom_30" style="margin-top:60px;padding:20px;">
             <button type="button" class="btn bg-primary cur-p btn-primary" data-toggle="modal" data-target="#myModal">Add
                 Event</button>

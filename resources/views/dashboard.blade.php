@@ -6,7 +6,7 @@
            <div class="row column_title">
               <div class="col-md-12">
                  <div class="page_title">
-                    <h2>Eligible</h2>
+                    <h2>Admins Dashboard</h2>
                  </div>
               </div>
            </div>
@@ -20,7 +20,7 @@
            <div class="row column_title">
               <div class="col-md-12">
                  <div class="page_title">
-                    <h2>Not eligible</h2>
+                    <h2>User Dashboard</h2>
                  </div>
               </div>
            </div>
