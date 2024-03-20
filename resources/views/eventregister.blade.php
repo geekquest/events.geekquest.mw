@@ -74,6 +74,11 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
+                    @if (\Carbon\Carbon::parse($event->date)->lessThan(\Carbon\Carbon::today()))
+                    <div class="alert alert-danger">
+                        <strong>Cant register for past events</strong> .
+                    </div>
+                @else
                     <div class="card">
                         <div class="card-header">
                             <h4>Register for this Event</h4>
@@ -101,6 +106,7 @@
                             </form>
                         </div>
                     </div>
+                    @endif
 
                 </div>
 

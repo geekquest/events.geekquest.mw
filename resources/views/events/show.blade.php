@@ -168,29 +168,33 @@
                                                 </div>
                                                 <div class="tab-pane fade" id="nav-profile_s2" role="tabpanel"
                                                     aria-labelledby="nav-profile-tab">
-                                                    <p>
-                                                        {{-- <img src="{!!$event->topic(QrCode::format('png')->generate('Embed me into an e-mail!'), 'QrCode.png', 'image/png')!!}">
-                                                     --}}
-                                                        {{-- {!! QrCode::size(100)->generate( route('dashboard') ); !!} --}}
-                                                        <img style="width: 100px; filter: brightness(300%);"
-                                                            src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(50)->generate(url()->current())) !!}"
-                                                            alt="QR Code">
-                                                        <br>
-                                                        <br>
-                                                    <p>
+                                                    @if (\Carbon\Carbon::parse($event->date)->lessThan(\Carbon\Carbon::today()))
+                                                        <div class="alert alert-danger">
+                                                            <strong>Cant register for past events</strong> .
+                                                        </div>
+                                                    @else
+                                                        <p>
 
-                                                        <input type="text" disabled
-                                                            value="{{ route('events.registration', $event) }}"
-                                                            style="width:100%" id="myInputone">
-                                                        <br>
-                                                        <br>
+                                                            <img style="width: 100px; filter: brightness(300%);"
+                                                                src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(50)->generate(url()->current())) !!}"
+                                                                alt="QR Code">
+                                                            <br>
+                                                            <br>
+                                                        <p>
 
-                                                        <button class="btn btn-primary bg-primary"
-                                                            onclick="myFunctionone()" onmouseout="outFunc()">
-                                                            <span class="tooltiptext" id="myTooltipone">Copy Link to
-                                                                Clipboard</button>
-                                                    </p>
-                                                    </p>
+                                                            <input type="text" disabled
+                                                                value="{{ route('events.registration', $event) }}"
+                                                                style="width:100%" id="myInputone">
+                                                            <br>
+                                                            <br>
+
+                                                            <button class="btn btn-primary bg-primary"
+                                                                onclick="myFunctionone()" onmouseout="outFunc()">
+                                                                <span class="tooltiptext" id="myTooltipone">Copy Link to
+                                                                    Clipboard</button>
+                                                        </p>
+                                                        </p>
+                                                    @endif
                                                 </div>
                                                 <div class="tab-pane fade" id="nav-contact_s2" role="tabpanel"
                                                     aria-labelledby="nav-contact-tab">

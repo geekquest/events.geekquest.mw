@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "844ff2b8b16f1af1e51d40558b6ed492",
+    "content-hash": "31305ca5692ff72051037ee85d4b1241",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1232,6 +1232,82 @@
                 }
             ],
             "time": "2022-05-21T17:30:32+00:00"
+        },
+        {
+            "name": "juliomotol/laravel-auth-timeout",
+            "version": "v4.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/juliomotol/laravel-auth-timeout.git",
+                "reference": "13b80620813106b97043e7e130abd6011d25d76a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/juliomotol/laravel-auth-timeout/zipball/13b80620813106b97043e7e130abd6011d25d76a",
+                "reference": "13b80620813106b97043e7e130abd6011d25d76a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "^9.0|^10.0",
+                "illuminate/events": "^9.0|^10.0",
+                "illuminate/session": "^9.0|^10.0",
+                "illuminate/support": "^9.0|^10.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.13.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^6.0|^7.0",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^7.0|^8.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "pestphp/pest-plugin-mock": "^1.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5|^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "JulioMotol\\AuthTimeout\\AuthTimeoutServiceProvider"
+                    ],
+                    "aliases": {
+                        "AuthTimeout": "JulioMotol\\AuthTimeout\\Facades\\AuthTimeout"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JulioMotol\\AuthTimeout\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Julio Motol",
+                    "email": "julio.motol89@gmail.com",
+                    "homepage": "https://juliomotol.github.io"
+                }
+            ],
+            "description": "Authentication Timeout for Laravel",
+            "homepage": "https://github.com/juliomotol/larave-auth-timeout",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "laravel",
+                "timeout"
+            ],
+            "support": {
+                "issues": "https://github.com/juliomotol/laravel-auth-timeout/issues",
+                "source": "https://github.com/juliomotol/laravel-auth-timeout/tree/v4.0.1"
+            },
+            "time": "2023-05-10T16:32:01+00:00"
         },
         {
             "name": "laravel/fortify",
