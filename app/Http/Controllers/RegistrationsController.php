@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Registrations;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\RegistrationExport;
 use App\Rules\UniqueEventEmailPhone;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreRegistrationsRequest;
 use App\Http\Requests\UpdateRegistrationsRequest;
@@ -144,5 +147,21 @@ class RegistrationsController extends Controller
     public function destroy(Registrations $registrations)
     {
         //
+    }
+
+    public function Downloadpdf(){
+        $data = Registrations::all();
+        $currentDateTime = date('Y-m-d_H-i-s');
+
+        $pdf = Pdf::loadView('exports.registration', ['data' => $data]);
+        return $pdf->download($currentDateTime . '_registred.pdf');
+    }
+    public function export()
+    {
+        $currentDateTime = date('Y-m-d_H-i-s');
+        return Excel::download(new RegistrationExport, $currentDateTime .'registration.xlsx');
+        // $currentDateTime = date('Y-m-d_H-i-s');
+
+        // return Excel::download(new UsersExport, $currentDateTime .'registration.xlsx');
     }
 }
