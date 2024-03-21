@@ -120,7 +120,7 @@ class RegistrationsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Registrations $registrations)
+    public function show(Registrations $registration)
     {
         //
     }
@@ -149,11 +149,14 @@ class RegistrationsController extends Controller
         //
     }
 
-    public function Downloadpdf(){
-        $data = Registrations::all();
+    public function Downloadpdf($id){
+        // dd($id);
+        $data = Registrations::where('event_id', $id)->get();
+        $regf = Registrations::where('event_id', $id)->first();
+        $comp = $regf->company;
         $currentDateTime = date('Y-m-d_H-i-s');
 
-        $pdf = Pdf::loadView('exports.registration', ['data' => $data]);
+        $pdf = Pdf::loadView('exports.registration', ['data' => $data, 'comp' => $comp]);
         return $pdf->download($currentDateTime . '_registred.pdf');
     }
     public function export()

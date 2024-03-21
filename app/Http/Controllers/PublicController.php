@@ -24,7 +24,8 @@ class PublicController extends Controller
   public function regtable(Event $event)
     {
 
-        // dd($event->id);
+        $evntId = $event->id;
+        // dd($evntId);
 
         $registrations = Registrations::where('event_id', $event->id)->get();
         $regf = Registrations::where('event_id', $event->id)->first();
@@ -32,7 +33,7 @@ class PublicController extends Controller
         // dd($comp);
 
         // dd($registrations);
-        return view('eventstable', compact('registrations','comp'));
+        return view('eventstable', compact('registrations','comp','regf','evntId'));
     }
 
     public function showEvents()

@@ -6,7 +6,7 @@
             <div class="heading1 margin_0">
                 <h2>Registrant Table</h2>
 
-                <a  class="btn btn-primary"  href="">Export PDF</a>
+                <a  class="btn btn-primary"  href="{{ route('downloadpdf',$evntId) }}">Export PDF</a>
                 <a class="btn btn-primary"  href="">Export EXCEL</a>
 
             </div>
