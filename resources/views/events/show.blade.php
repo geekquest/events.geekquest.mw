@@ -203,7 +203,8 @@
                                                             @if ($registration->count() > 0)
                                                                 <h4>Total : {{ $registration->count() }}</h4>
                                                                 <br>
-                                                                <a href="{{ route('events.regtable', $event) }}" class="btn btn-primary btn-sm">See full
+                                                                <a href="{{ route('events.regtable', $event) }}"
+                                                                    class="btn btn-primary btn-sm">See full
                                                                     details</a>
                                                                 <br>
                                                                 <br>
