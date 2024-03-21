@@ -25,7 +25,7 @@ class EventController extends Controller
 
 
         $forms = forms::all();
-        return view('events.index', compact('events', 'forms','userevents'));
+        return view('events.index', compact('events', 'forms', 'userevents'));
     }
 
     /**
@@ -141,21 +141,19 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        if (Auth::user()->id == $event->user_id) {
+        if (Auth::user()->id == $event->user_id || Auth::user()->hasRole('admin')) {
             $forms = forms::all();
             $registration = Registrations::where('event_id', $event->id)->get();
             $reminders = Time::where('event_id', $event->id)->get();
 
-            return view('events.show', compact('event', 'forms','registration','reminders'));
+            return view('events.show', compact('event', 'forms', 'registration', 'reminders'));
+        } else {
+            // redirect user to home page
+            Alert::toast('You dont have access to view this', 'error');
 
-
-    } else {
-        // redirect user to home page
-        Alert::toast('You dont have access to view this', 'error');
-
-        return redirect()->back();
+            return redirect()->back();
+        }
     }
-   }
 
     // public function registration(){
 
@@ -166,13 +164,22 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        $forms = forms::all();
 
-        return view('events.edit', compact('event', 'forms'));
+
+        if (Auth::user()->id == $event->user_id || Auth::user()->hasRole('admin')) {
+            $forms = forms::all();
+
+            return view('events.edit', compact('event', 'forms'));
+        } else {
+            // redirect user to home page
+            Alert::toast('You dont have access to view this', 'error');
+
+            return redirect()->back();
+        }
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage.s
      */
     public function update(UpdateEventRequest $request, Event $event)
     {
@@ -180,85 +187,85 @@ class EventController extends Controller
         $eventone = Event::findOrFail($event->id);
         // dd($eventone->id);
 
-         // Validate the request data
-    $data = $this->validateRequestone();
+        // Validate the request data
+        $data = $this->validateRequestone();
 
-    // Check if the venue is null
-    if ($request->venue == null) {
-        $data['venue'] = 'Tech Malawi Discord Server';
-    } else {
-        $data['venue'] = $request->venue;
-    }
+        // Check if the venue is null
+        if ($request->venue == null) {
+            $data['venue'] = 'Tech Malawi Discord Server';
+        } else {
+            $data['venue'] = $request->venue;
+        }
 
-    // // Process time and duration
-    // if ($request->time != null) {
-    //     $inputTime = $request->input('time');
-    //     $inputDuration = $request->input('duration');
-    //     // Convert input time to Carbon instance
-    //     $startTime = Carbon::createFromFormat('H:i', $inputTime);
-    //     // Parse the duration to get the hours and minutes
-    //     $durationParts = explode(' ', $inputDuration);
-    //     $hours = (int)$durationParts[0];
-    //     $minutes = ($durationParts[1] == 'hours') ? 0 : (int)$durationParts[1];
-    //     // Add the duration to the start time
-    //     $endTime = $startTime->copy()->addHours($hours)->addMinutes($minutes);
-    //     // Format the end time
-    //     $endTimeFormatted = $endTime->format('H:i');
-    //     $data['time_to'] = $endTimeFormatted;
-    // }
-    if ($request->time != null) {
-        $inputTime = $request->input('time');
-        $inputDuration = $request->input('duration');
+        // // Process time and duration
+        // if ($request->time != null) {
+        //     $inputTime = $request->input('time');
+        //     $inputDuration = $request->input('duration');
+        //     // Convert input time to Carbon instance
+        //     $startTime = Carbon::createFromFormat('H:i', $inputTime);
+        //     // Parse the duration to get the hours and minutes
+        //     $durationParts = explode(' ', $inputDuration);
+        //     $hours = (int)$durationParts[0];
+        //     $minutes = ($durationParts[1] == 'hours') ? 0 : (int)$durationParts[1];
+        //     // Add the duration to the start time
+        //     $endTime = $startTime->copy()->addHours($hours)->addMinutes($minutes);
+        //     // Format the end time
+        //     $endTimeFormatted = $endTime->format('H:i');
+        //     $data['time_to'] = $endTimeFormatted;
+        // }
+        if ($request->time != null) {
+            $inputTime = $request->input('time');
+            $inputDuration = $request->input('duration');
 
-        // Validate input time format
-        if (preg_match('/^\d{1,2}:\d{2}$/', $inputTime)) {
-            // Convert input time to Carbon instance
-            $startTime = Carbon::createFromFormat('H:i', $inputTime);
+            // Validate input time format
+            if (preg_match('/^\d{1,2}:\d{2}$/', $inputTime)) {
+                // Convert input time to Carbon instance
+                $startTime = Carbon::createFromFormat('H:i', $inputTime);
 
-            // Parse the duration
-            $durationParts = explode(' ', $inputDuration);
+                // Parse the duration
+                $durationParts = explode(' ', $inputDuration);
 
-            // Ensure the correct number of parts
-            if (count($durationParts) == 2) {
-                $hours = (int)$durationParts[0];
-                $minutes = ($durationParts[1] == 'hours') ? 0 : (int)$durationParts[1];
+                // Ensure the correct number of parts
+                if (count($durationParts) == 2) {
+                    $hours = (int)$durationParts[0];
+                    $minutes = ($durationParts[1] == 'hours') ? 0 : (int)$durationParts[1];
 
-                // Add the duration to the start time
-                $endTime = $startTime->copy()->addHours($hours)->addMinutes($minutes);
+                    // Add the duration to the start time
+                    $endTime = $startTime->copy()->addHours($hours)->addMinutes($minutes);
 
-                // Format the end time
-                $endTimeFormatted = $endTime->format('H:i');
-                $data['time_to'] = $endTimeFormatted;
+                    // Format the end time
+                    $endTimeFormatted = $endTime->format('H:i');
+                    $data['time_to'] = $endTimeFormatted;
+                } else {
+                    // Handle unexpected input format for duration
+                    $data['time_to'] = null; // or whatever default behavior you decide
+                    // Log or notify about the unexpected input format
+                    // Log::error("Unexpected input duration format: $inputDuration");
+                }
             } else {
-                // Handle unexpected input format for duration
+                // Handle unexpected input format for time
                 $data['time_to'] = null; // or whatever default behavior you decide
                 // Log or notify about the unexpected input format
-                // Log::error("Unexpected input duration format: $inputDuration");
+                // Log::error("Unexpected input time format: $inputTime");
             }
-        } else {
-            // Handle unexpected input format for time
-            $data['time_to'] = null; // or whatever default behavior you decide
-            // Log or notify about the unexpected input format
-            // Log::error("Unexpected input time format: $inputTime");
         }
-    }
 
 
-    // Fill other fields
-    $data['topic'] = $request->topic;
-    $data['form_id'] = $request->form_id;
-    $data['date'] = $request->date;
-    $data['message'] = $request->message;
+        // Fill other fields
+        $data['topic'] = $request->topic;
+        $data['form_id'] = $request->form_id;
+        $data['date'] = $request->date;
+        $data['message'] = $request->message;
 
-    // Update the event
-    $eventone->update($data);
+        // Update the event
+        $eventone->update($data);
 
-    // Optionally, handle images
-    $this->storeimage($eventone);
+        // Optionally, handle images
+        $this->storeimage($eventone);
 
-    // Return success message and redirect back
-    Alert::toast('Event updated successfully', 'success');
-    return redirect()->route('events.index');
+        // Return success message and redirect back
+        Alert::toast('Event updated successfully', 'success');
+        return redirect()->route('events.index');
     }
 
     /**
