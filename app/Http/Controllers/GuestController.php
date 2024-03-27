@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreGuestRequest;
-use App\Http\Requests\UpdateGuestRequest;
 use App\Models\Guest;
+use App\Http\Requests\StoreGuestRequest;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\UpdateGuestRequest;
+
 
 class GuestController extends Controller
 {
@@ -13,7 +15,8 @@ class GuestController extends Controller
      */
     public function index()
     {
-        //
+        $allguest = Guest::all();
+        return view('guest.index', compact('allguest'));
     }
 
     /**
@@ -29,9 +32,23 @@ class GuestController extends Controller
      */
     public function store(StoreGuestRequest $request)
     {
-        //
+        // dd($request->all());
+      Guest::create($this->validateRequest()) ;
+      Alert::toast('You have successfully submitted a  guest', 'success');
+
+
+      return redirect()->back();
     }
 
+    private function validateRequest()
+    {
+        return request()->validate([
+            'gname' => 'required',
+            'gemail' => '',
+            'gmessage' => '',
+            'gmobile' => '',
+        ]);
+    }
     /**
      * Display the specified resource.
      */

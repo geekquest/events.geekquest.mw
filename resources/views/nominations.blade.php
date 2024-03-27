@@ -16,18 +16,18 @@
   </p>
 
                         <div class="text-center">
-                            <form style="margin-top:10px;" action="{{ route('search.index') }}" method="post">
+                            <form style="margin-top:10px;" action="{{ route('gstore') }}" method="post">
                                 @csrf
                                 <div class="form-group">
                                     {{-- <label for="name">Guest Name:</label> --}}
-                                    <input type="text" class="form-control" id="name" placeholder="Enter guest name" required>
+                                    <input type="text" class="form-control" name="gname" id="name" placeholder="Enter guest name" required>
                                 </div>
                                 <div class="form-group">
                                     {{-- <label for="name">Guest Name:</label> --}}
-                                    <input type="text" class="form-control" id="name" placeholder="Enter guest email" required>
+                                    <input type="text" class="form-control" name="gemail" placeholder="Enter guest email" required>
                                 </div>   <div class="form-group">
                                     {{-- <label for="name">Guest Email:</label> --}}
-                                    <input type="text" class="form-control" id="name" placeholder="Enter guest MobileNumber" required>
+                                    <input type="text" class="form-control" name="gmobile" placeholder="Enter guest MobileNumber" required>
                                </div>   {{--  <div class="form-group">
 
                                     <input type="text" class="form-control" id="name" placeholder="Enter guest name" required>
@@ -35,10 +35,10 @@
 
                                 <div class="form-group">
                                     {{-- <label for="name">Description:</label> --}}
-                                   <textarea class="form-control" placeholder="Share more description about the guest " name="" id="" cols="30" rows="10"></textarea>
+                                   <textarea class="form-control" placeholder="Share more description about the guest " name="gmessage" id="" cols="30" rows="10"></textarea>
                                 </div>
 
-                                <button type="submit" style="width:50%" class="btn btn-primary bg-primary">Search</button>
+                                <button type="submit" style="width:50%" class="btn btn-primary bg-primary">Submitt</button>
                             </form>
                         </div>
                     </div>

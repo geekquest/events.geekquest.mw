@@ -19,9 +19,14 @@
     <div class="sidebar_blog_2">
        <h4>General</h4>
        <ul class="list-unstyled components">
-  
+
           <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a></li>
           <li><a href="{{ route('events.index') }}"><i class="fa fa-clock-o orange_color"></i> <span>  Events</span></a></li>
+          @role('admin')
+          <li><a href="{{ route('sguest') }}"><i class="fa fa-clock-o orange_color"></i> <span>  Suggested Guest</span></a></li>
+          <li><a href="{{ route('sguest') }}"><i class="fa fa-clock-o orange_color"></i> <span>  Users</span></a></li>
+
+@endrole
           <li><a href="{{ route('forms.index') }}"><i class="fa fa-clone orange_color"></i> <span>  Forms</span></a></li>
 
         </ul>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FormsController;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\RegistrationsController;
 use App\Http\Controllers\TimeController;
@@ -49,5 +50,9 @@ Route::middleware([
 Route::resource('reminders', TimeController::class);
 Route::resource('events', EventController::class);
 Route::resource('forms', FormsController::class);
+Route::post('save-guest', [GuestController::class, 'store'])->name('gstore');
+Route::get('suggested-guest', [GuestController::class, 'index'])->name('sguest');
+
+
 Route::get('download-pdf/{id}', [RegistrationsController::class, 'Downloadpdf'])->name('downloadpdf')->middleware('auth');
 Route::get('download-excel', [RegistrationsController::class, 'export'])->name('export')->middleware('auth');

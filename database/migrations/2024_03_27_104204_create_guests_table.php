@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('guests', function (Blueprint $table) {
             $table->id();
             $table->string('gname');
-            $table->string('gemail');
-            $table->string('gmobile');
-            $table->longText('gmessage');
+            $table->string('gemail')->nullable();
+            $table->string('gmobile')->nullable();
+            $table->longText('gmessage')->nullable();
             $table->timestamps();
         });
     }
