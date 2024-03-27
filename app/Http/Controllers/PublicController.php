@@ -36,6 +36,13 @@ class PublicController extends Controller
         return view('eventstable', compact('registrations','comp','regf','evntId'));
     }
 
+    public function nominate(){
+        $threevents= Event::orderBy('date', 'asc')->first();
+
+        return view('nominations', compact('threevents')  );
+
+    }
+
     public function showEvents()
     {
         $events= Event::orderBy('date', 'asc')->get();

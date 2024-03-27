@@ -47,6 +47,7 @@ https://www.tooplate.com/view/2125-artxibition
                                 {{-- <li><a href="about.html">About Us</a></li>
                                 <li><a href="rent-venue.html">Rent Venue</a></li> --}}
                                 <li><a href="{{ route('showevent') }}">Shows & Events</a></li>
+                                <li><a href="{{ route('nominate') }}">Nominate a Guest</a> </li>
                                 <li><a href="{{ route('login') }}">Login</a></li>
                             </ul>
                             <a class='menu-trigger'>
@@ -65,7 +66,7 @@ https://www.tooplate.com/view/2125-artxibition
     <!-- *** Footer *** -->
     <footer>
         <div class="container">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-4">
                     <div class="address">
                         <h4>Sunny Hill Festival Address</h4>
@@ -111,7 +112,7 @@ https://www.tooplate.com/view/2125-artxibition
                 <div class="col-lg-12">
 
                 </div>
-            </div>
+            </div> --}}
         </div>
     </footer>
 

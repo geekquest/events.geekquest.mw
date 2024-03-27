@@ -32,6 +32,8 @@ Route::get('admin/logout', [PublicController::class, 'adminDestroy'])->name('adm
 Route::post('/search', [PublicController::class, 'search'])->name('search.index');
 Route::get('/', [PublicController::class, 'index'])->name('landipage');
 Route::get('shows-and-events', [PublicController::class, 'showEvents'])->name('showevent');
+Route::get('nominate-guest', [PublicController::class, 'nominate'])->name('nominate');
+
 Route::get('events/{event}/registration', [PublicController::class, 'registration'])->name('events.registration');
 
 //admin routes
