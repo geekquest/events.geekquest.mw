@@ -24,7 +24,7 @@
           <li><a href="{{ route('events.index') }}"><i class="fa fa-clock-o orange_color"></i> <span>  Events</span></a></li>
           @role('admin')
           <li><a href="{{ route('sguest') }}"><i class="fa fa-clock-o orange_color"></i> <span>  Suggested Guest</span></a></li>
-          <li><a href="{{ route('sguest') }}"><i class="fa fa-clock-o orange_color"></i> <span>  Users</span></a></li>
+          <li><a href="{{ route('allusers') }}"><i class="fa fa-clock-o orange_color"></i> <span>  Users</span></a></li>
 
 @endrole
           <li><a href="{{ route('forms.index') }}"><i class="fa fa-clone orange_color"></i> <span>  Forms</span></a></li>

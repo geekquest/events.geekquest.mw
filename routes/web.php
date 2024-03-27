@@ -53,6 +53,9 @@ Route::resource('forms', FormsController::class);
 Route::post('save-guest', [GuestController::class, 'store'])->name('gstore');
 Route::get('suggested-guest', [GuestController::class, 'index'])->name('sguest');
 
+Route::get('all-users', [GuestController::class, 'allusers'])->name('allusers');
+
+
 
 Route::get('download-pdf/{id}', [RegistrationsController::class, 'Downloadpdf'])->name('downloadpdf')->middleware('auth');
 Route::get('download-excel', [RegistrationsController::class, 'export'])->name('export')->middleware('auth');

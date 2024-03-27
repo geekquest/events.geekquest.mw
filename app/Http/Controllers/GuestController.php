@@ -6,7 +6,7 @@ use App\Models\Guest;
 use App\Http\Requests\StoreGuestRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\UpdateGuestRequest;
-
+use App\Models\User;
 
 class GuestController extends Controller
 {
@@ -19,6 +19,10 @@ class GuestController extends Controller
         return view('guest.index', compact('allguest'));
     }
 
+    public function allusers(){
+        $allusers = User::all();
+        return view('guest.allusers', compact('allusers'));
+    }
     /**
      * Show the form for creating a new resource.
      */
