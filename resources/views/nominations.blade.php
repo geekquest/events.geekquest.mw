@@ -9,15 +9,35 @@
                 <div class="col-lg-8">
                     <div class="section-heading">
                         <h2>Recommend a Guest</h2>
-
+  <p> <strong>
+    Have someone in mind you'd love to see on our show?
+  </strong>
+    We want to hear from you! Share your recommendations for potential guests who you believe would bring valuable insights, expertise, or entertainment to our audience. Your suggestions help us shape the future of our content and ensure we feature voices that resonate with our community. Let us know who you think we should interview next!
+  </p>
 
                         <div class="text-center">
                             <form style="margin-top:10px;" action="{{ route('search.index') }}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" required placeholder="search here..........." class="form-control" name="keyword" id="">
+                                    {{-- <label for="name">Guest Name:</label> --}}
+                                    <input type="text" class="form-control" id="name" placeholder="Enter guest name" required>
                                 </div>
-                                <br>
+                                <div class="form-group">
+                                    {{-- <label for="name">Guest Name:</label> --}}
+                                    <input type="text" class="form-control" id="name" placeholder="Enter guest email" required>
+                                </div>   <div class="form-group">
+                                    {{-- <label for="name">Guest Email:</label> --}}
+                                    <input type="text" class="form-control" id="name" placeholder="Enter guest MobileNumber" required>
+                               </div>   {{--  <div class="form-group">
+
+                                    <input type="text" class="form-control" id="name" placeholder="Enter guest name" required>
+                                </div> --}}
+
+                                <div class="form-group">
+                                    {{-- <label for="name">Description:</label> --}}
+                                   <textarea class="form-control" placeholder="Share more description about the guest " name="" id="" cols="30" rows="10"></textarea>
+                                </div>
+
                                 <button type="submit" style="width:50%" class="btn btn-primary bg-primary">Search</button>
                             </form>
                         </div>
