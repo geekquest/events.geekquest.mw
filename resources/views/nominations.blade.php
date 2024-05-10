@@ -20,14 +20,14 @@
                                 @csrf
                                 <div class="form-group">
                                     {{-- <label for="name">Guest Name:</label> --}}
-                                    <input type="text" class="form-control" name="gname" id="name" placeholder="Enter guest name" required>
+                                    <input type="text" class="form-control" name="gname" id="name" placeholder="Enter guest name" >
                                 </div>
                                 <div class="form-group">
                                     {{-- <label for="name">Guest Name:</label> --}}
-                                    <input type="text" class="form-control" name="gemail" placeholder="Enter guest email" required>
+                                    <input type="text" class="form-control" name="gemail" placeholder="Enter guest email" >
                                 </div>   <div class="form-group">
                                     {{-- <label for="name">Guest Email:</label> --}}
-                                    <input type="text" class="form-control" name="gmobile" placeholder="Enter guest MobileNumber" required>
+                                    <input type="text" class="form-control" name="gmobile" placeholder="Enter guest MobileNumber" >
                                </div>   {{--  <div class="form-group">
 
                                     <input type="text" class="form-control" id="name" placeholder="Enter guest name" required>
@@ -35,7 +35,7 @@
 
                                 <div class="form-group">
                                     {{-- <label for="name">Description:</label> --}}
-                                   <textarea class="form-control" placeholder="Share more description about the guest " name="gmessage" id="" cols="30" rows="10"></textarea>
+                                   <textarea class="form-control" placeholder="Suggest a Topic " required name="gmessage" id="" cols="30" rows="10"></textarea>
                                 </div>
 
                                 <button type="submit" style="width:50%" class="btn btn-primary bg-primary">Submitt</button>

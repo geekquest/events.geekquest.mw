@@ -73,13 +73,15 @@
                         </div>
                     </div>
                 </div>
+
+                @if ($event->form_id !== 0 )
                 <div class="col-lg-6">
                     @if (\Carbon\Carbon::parse($event->date)->lessThan(\Carbon\Carbon::today()))
-                    <div class="alert alert-danger">
-                        <strong>Cant register for past events</strong> .
-                    </div>
-                @else
-                    <div class="card">
+                        <div class="alert alert-danger">
+                            <strong>Cant register for past events</strong> .
+                        </div>
+                    @else
+                      <div class="card">
                         <div class="card-header">
                             <h4>Register for this Event</h4>
                         </div>
@@ -87,29 +89,30 @@
 
                             <form action="{{ route('registration.store') }}" method="POST">
                                 @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul class="list-unstyled">
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
+                                    <div class="alert alert-danger">
+                                        <ul class="list-unstyled">
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 @csrf
                                 <x-honeypot />
                                 @include('includes.standard')
                                 @if ($event->form_id == 1)
-                                <button type="submit" style="width: 100%;margin-top:10px;" name="action" value="save"  class="btn bg-primary btn-primary me-2">Register</button>
+                                    <button type="submit" style="width: 100%;margin-top:10px;" name="action"
+                                        value="save" class="btn bg-primary btn-primary me-2">Register</button>
                                 @else
-                                <button type="submit" style="width: 100%;margin-top:10px;"  name="action" value="submit"  class="btn bg-primary btn-primary me-2">Register</button>
+                                    <button type="submit" style="width: 100%;margin-top:10px;" name="action"
+                                        value="submit" class="btn bg-primary btn-primary me-2">Register</button>
                                 @endif
                             </form>
                         </div>
                     </div>
-                    @endif
-
+                      @endif
                 </div>
-
+                @endif
             </div>
         </div>
     </div>
