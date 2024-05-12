@@ -153,7 +153,10 @@
                         <img src="{{ asset('techmw.png') }}" alt="">
                         </div>
                         <div class="down-content">
+                            <a href="https://twitter.com/techmalawihub">
                         <h4>Tech Malawi</h4>
+
+                            </a>
 
                         </div>
                     </div>
@@ -164,8 +167,11 @@
                         <img src="{{ asset('divtag.png') }}" alt="">
                         </div>
                         <div class="down-content">
+
+                            <a href="https://chat.whatsapp.com/Hqo9P2nJvai5oWee9Agxae">
                         <h4>Divtag Web </h4>
 
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -175,8 +181,11 @@
                             <img src="{{ asset('geek.png') }}" alt="">
                         </div>
                         <div class="down-content">
+
+                            <a href="https://chat.whatsapp.com/K1I4gcbX7vwJnwl5VdKiWF">
                             <h4>Geek Quest</h4>
 
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -186,8 +195,11 @@
                             <img src="{{ asset('women.png') }}" alt="">
                         </div>
                         <div class="down-content">
+
+                            <a href="https://twitter.com/womenintech_mw">
                             <h4>Women in Tech</h4>
 
+                            </a>
                         </div>
                     </div>
                 </div>
