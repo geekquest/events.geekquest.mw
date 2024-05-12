@@ -21,6 +21,19 @@ class PublicController extends Controller
         // dd($event);
         return view('welcome', compact('event','events','threevents'));
     }
+
+    public function indexmobile()
+{
+    $event = Event::orderBy('date', 'asc')->first();
+    $events = Event::orderBy('date', 'asc')->get();
+    $threevents = Event::orderBy('date', 'asc')->take(3)->get();
+
+    return response()->json([
+        'event' => $event,
+        'events' => $events,
+        'threevents' => $threevents
+    ]);
+}
   public function regtable(Event $event)
     {
 

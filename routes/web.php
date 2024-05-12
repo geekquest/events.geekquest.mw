@@ -26,6 +26,9 @@ Route::get('eventstable/{event}/registration', [PublicController::class, 'regtab
 Route::post('/events/register', [EventController::class,  'save'])->name('event.save');
 Route::get('admin/logout', [PublicController::class, 'adminDestroy'])->name('admin.logout');
 
+Route::get('all/events', [PublicController::class, 'indexmobile']);
+
+
 
 
 
