@@ -120,8 +120,8 @@ class EventController extends Controller
             $event->update([
                 'image' => request()->image->store('uploads/image', 'public'),
             ]);
-            $image = Image::make('storage/' . $event->image);
-            // ->fit(346, 208);
+            $image = Image::make('storage/' . $event->image)
+            ->fit(1500, 1500);
             $image->save();
         }
     }
