@@ -52,7 +52,7 @@
 							Forgot
 						</span>
 
-						<a href="#" class="txt2">
+						<a href="{{ route('password.request') }}" class="txt2">
 							Username / Password?
 						</a>
 					</div>
