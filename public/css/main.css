@@ -7,17 +7,17 @@
 
 @font-face {
   font-family: Ubuntu-Regular;
-  src: url('../fonts/ubuntu/Ubuntu-Regular.ttf'); 
+  src: url('../fonts/ubuntu/Ubuntu-Regular.ttf');
 }
 
 @font-face {
   font-family: Ubuntu-Bold;
-  src: url('../fonts/ubuntu/Ubuntu-Bold.ttf'); 
+  src: url('../fonts/ubuntu/Ubuntu-Bold.ttf');
 }
 
 @font-face {
   font-family: JosefinSans-Bold;
-  src: url('../fonts/JosefinSans/JosefinSans-Bold.ttf'); 
+  src: url('../fonts/JosefinSans/JosefinSans-Bold.ttf');
 }
 
 
@@ -26,14 +26,15 @@
 [ RESTYLE TAG ]*/
 
 * {
-	margin: 0px; 
-	padding: 0px; 
+	margin: 0px;
+	padding: 0px;
 	box-sizing: border-box;
 }
 
 body, html {
 	height: 100%;
 	font-family: Ubuntu-Regular, sans-serif;
+    background-color:#f3f4f6;
 }
 
 /*---------------------------------------------*/
@@ -163,7 +164,7 @@ iframe {
 }
 
 .container-login100 {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -175,7 +176,6 @@ iframe {
   align-items: center;
   padding: 15px;
   position: relative;
-  background-color: #fff;
 }
 
 .wrap-login100 {
@@ -262,7 +262,7 @@ iframe {
   border-radius: 31px;
   background-color: #ebebeb;
   pointer-events: none;
-  
+
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;

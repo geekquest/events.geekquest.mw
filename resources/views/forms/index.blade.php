@@ -146,7 +146,7 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="/action_page.php">
+                    <form action="">
                         <div class="form-group">
                             <label for="email">Form Name:</label>
                             <input type="text" class="form-control" placeholder="Enter name" id="email">
