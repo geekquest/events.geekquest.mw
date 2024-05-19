@@ -22,8 +22,8 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/util.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -37,13 +37,13 @@
 						Sign In
 					</span>
 
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-						<input class="input100" type="text" name="username" placeholder="Username">
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter email address">
+						<input class="input100" type="text" name="email" placeholder="Email">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Please enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -58,7 +58,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button type="submit" class="login100-form-btn">
 							Sign in
 						</button>
 					</div>
@@ -68,7 +68,7 @@
 							Don’t have an account?
 						</span>
 
-						<a href="#" class="txt3">
+						<a href="{{ route('register') }}" class="txt3">
 							Sign up now
 						</a>
 					</div>
@@ -93,7 +93,7 @@
 <!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+	<script src="{{ asset('js/main.js') }}"></script>
 
 </body>
 </html>
