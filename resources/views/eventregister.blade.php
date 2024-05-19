@@ -54,6 +54,7 @@
                         <h2>{{ $event->topic }}</h2>
                     </div>
                 </div>
+                @if ($event->form_id !== 0 )
                 <div class="col-lg-6">
                     <div class="full progress_bar_inner">
                         <div class="row">
@@ -113,6 +114,25 @@
                       @endif
                 </div>
                 @endif
+                @else
+                <div class="col-lg-12">
+                    <div class="full progress_bar_inner">
+                        <div class="row">
+                            <div class="">
+                                <img src="{{ asset('storage/' . $event->image) }}" alt="image" style="width: 100%" />
+                                <ul style="margin-top:50px;">
+                                    <li><i class="fa fa-clock-o"></i>
+                                        {{ \Carbon\Carbon::parse($event->date)->format('d F Y') }} -
+                                        {{ \Carbon\Carbon::parse($event->time)->format('h:iA') }} to
+                                        {{ \Carbon\Carbon::parse($event->time_to)->format('h:iA') }}</li>
+                                    <li><i class="fa fa-map-marker"></i> {{ $event->venue }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
             </div>
         </div>
     </div>
